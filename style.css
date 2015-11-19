@@ -1,0 +1,36 @@
+body{
+	background-color: #303030;
+	color: white;
+	text-align: center;
+}
+#container{
+	width: 960px;
+	color:white;
+	padding: 15px;
+	margin: 0px;
+	text-align: center;
+
+}
+#zadanie{
+	width: 540px;
+	height: 160px;
+	margin-left: 200px;
+	font-size: 48px;
+	padding: 40px;
+	padding-top: 100px;
+	font-family: "KGTenThousandReasons",Verdana; 
+	background-color: green; 
+}
+.wyniki{
+	float: left;
+	width: 145px;
+	height: 70px;
+	border: 5px solid red;
+	font-size: 48px;
+	font-family: "KGTenThousandReasons",Verdana; 
+}
+
+@font-face {
+    font-family: "KGTenThousandReasons";
+    src: url(KGTenThousandReasons.ttf) format("truetype");
+}

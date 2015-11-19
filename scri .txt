@@ -1,0 +1,97 @@
+﻿function zadanie (){
+	var znaki=["+","-","*","/"];
+
+	var liczba = Math.floor((100)*Math.random()) + 1;
+
+	var liczba2 = Math.floor((75)*Math.random()) + 1;
+
+	var znak = Math.floor((3)*Math.random());
+
+	var zadanie = liczba + znaki[znak] + liczba2;
+
+	switch(znak)
+	{
+		case 0 : dzialanie1=liczba+liczba2; break;
+		case 1 : dzialanie1=liczba-liczba2; break;
+		case 2 : dzialanie1=liczba*liczba2; break;
+		//case 3 : dzialanie1=liczba/liczba2; break;
+	}
+
+	var tab = new Array(dzialanie1,zadanie);
+	return tab;
+}
+
+function wypelnij(tab){
+
+	var liczba = tab[0];
+
+	var odp = [];
+	odp[0] = tab[0];
+
+	for (var i = 1; i < 4; i++) {
+		odp[i] = Math.floor((liczba)*Math.random()) +liczba;
+	};
+	 
+	return odp;
+}
+
+function shuffle(o) {
+	for(var j, x, i = o.length; i; j = parseInt(Math.random() * i), x = o[--i], o[i] = o[j], o[j] = x);
+	return o;
+};
+
+
+function sprawdz(tab,index,wartosc){	
+	 	var poprawna = tab[0];	
+
+		var val = $('#punkty').val();
+		var zycie = $('#zycie').val();
+
+		if (poprawna == wartosc) {
+			$('#punkty').val((val*1)+1); 
+			alert("tak");
+			start(false);
+		} 
+		else{
+			$('#zycie').val((zycie*1)-1); 
+			alert("nie");	
+			start(false);
+		};	
+}
+
+function start(reset){
+	var zycie1 = $('#zycie').val();
+	
+	if (reset==true) {
+		$('#punkty').val(0);
+		$('#zycie').val(3);
+	};
+	if (zycie1==0) {
+		alert("Przegrałes");
+		start(true);
+	};
+	var tab = zadanie(); //zadanie losowanie 
+
+	$('#zadanie').text(tab[1]+"=");
+
+	var odp = wypelnij(tab); //odpowiedzi wypelnianie innych div
+
+	var odp_rand = shuffle(odp); //przemieszanie odpowiedzi
+
+	//wypisywanie odpowiedzi do div
+	for (var i = 0; i < 4; i++) {
+		var id = '#p'+i;
+		$(id).text(odp_rand[i]);
+	};	
+
+	
+	 	$('.wyniki').click(function(){
+	 		var index;
+	var wartosc;
+		 index = $(this).attr('id');
+		 wartosc =+ $(index).text();
+		 alert(wartosc);
+		// sprawdz(tab,index,wartosc);
+
+		 });
+}				
